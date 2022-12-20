@@ -37,7 +37,6 @@
     .app-main {
       /* main = 100% - navbar + tagsview */
       min-height: calc(100vh - 84px);
-      background: red;
     }
   }
 }
