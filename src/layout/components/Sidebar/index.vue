@@ -5,7 +5,7 @@
     :default-active="activeMenu"
     :background-color="scssVariables.menuBg"
     :text-color="scssVariables.menuText"
-    :active-text-color="scssVariables.menuActiveText"
+    :active-text-color="themeColor"
     :collapse="sidebar.opened"
     :collapse-transition="true"
   >
@@ -25,6 +25,7 @@ import { routes } from "@/router"
 
 import { useAppStore } from "@/stores/app"
 import { storeToRefs } from "pinia"
+import { useSettingsStore } from "@/stores/settings"
 const store = useAppStore()
 const { sidebar } = storeToRefs(store)
 // 渲染路由
@@ -38,5 +39,6 @@ const activeMenu = computed(() => {
   }
   return path
 })
-const isCollapse = ref(false)
+const settingStore = useSettingsStore()
+const themeColor = computed(() => settingStore.settings.theme)
 </script>

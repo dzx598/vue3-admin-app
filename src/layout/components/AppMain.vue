@@ -12,9 +12,15 @@
 <script lang="ts" setup>
 import { useTagsView } from "@/stores/tagsView"
 import { storeToRefs } from "pinia"
-
+import {
+  bubbleSort,
+  bubbleSortAd1,
+  bubbleSortFin,
+  QuickSort
+} from "@/hooks/sort"
 const route = useRoute()
 const store = useTagsView()
+console.log(QuickSort([2, 1, 3, 4, 8, 6, 7, 10, 6, 123, 4, 1, 23, 5, 6]))
 
 const { cachedViews } = storeToRefs(store)
 const includes = computed(() => cachedViews.value as string[])

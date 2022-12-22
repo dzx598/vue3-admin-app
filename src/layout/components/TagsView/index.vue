@@ -11,6 +11,10 @@
           v-for="(tag, index) in visitedViews"
           :key="index"
           :to="{ path: tag.path, query: tag.query }"
+          :style="{
+            backgroundColor: isActive(tag) ? themeColor : '',
+            borderColor: isActive(tag) ? themeColor : ''
+          }"
         >
           <el-dropdown
             trigger="contextmenu"
@@ -53,6 +57,7 @@ import { RouteLocationNormalized, RouteRecordRaw } from "vue-router"
 import { CloseBold } from "@element-plus/icons-vue"
 import path from "path-browserify"
 import { routes } from "@/router"
+import { useSettingsStore } from "@/stores/settings"
 const store = useTagsView()
 
 const { visitedViews } = storeToRefs(store)
@@ -187,6 +192,8 @@ const handleCloseOtherTag = (view: RouteLocationNormalized) => {
     router.push(view.path)
   }
 }
+const settingStore = useSettingsStore()
+const themeColor = computed(() => settingStore.settings.theme)
 </script>
 
 <style lang="scss" scoped>
