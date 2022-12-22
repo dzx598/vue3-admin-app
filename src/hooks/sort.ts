@@ -61,7 +61,7 @@ export function bubbleSortFin(array: Array<number>) {
  * 快速排序（Quick Sort）
  * 快速排序的基本思想是：通过一趟排序将待排记录分割成独立的两部分，其中一部分记录关键字均比另一部分的关键字小，则可分别对这两部分记录继续进行排序，以达到整个序列有序
  */
-export const QuickSort = (array: Array<number>): any => {
+export const QuickSort = (array: Array<number>): any[] => {
   if (array.length <= 1) return array
   const pivotIndex = parseInt(array.length / 2 + "")
   const pivot = Number(array.splice(pivotIndex, 1))
@@ -80,3 +80,24 @@ export const QuickSort = (array: Array<number>): any => {
  * 快速排序（Quick Sort）方法2
  * 其中 left = 0; right = array.length-1
  */
+
+/**
+ * 选择排序
+ * 表现最稳定的排序算法之一，因为无论什么数据进去都是O(n2)的时间复杂度......所以用它的时候数据规模越小越好，唯一的好处就是不占用额外的内存空间
+ */
+export const selectionSort = (array: Array<number>): Array<number> => {
+  for (let i = 0; i < array.length; i++) {
+    console.log(i)
+
+    let currentMinIndex = i
+    for (let j = 1; j < array.length - i; j++) {
+      if (array[currentMinIndex] > array[j]) {
+        currentMinIndex = j
+      }
+    }
+    const temp = array[i]
+    array[i] = array[currentMinIndex]
+    array[currentMinIndex] = temp
+  }
+  return array
+}

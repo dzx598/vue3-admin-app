@@ -4,9 +4,39 @@
       <span>主题色</span>
       <theme-picker />
     </div>
+    <div class="drawer-item">
+      <span>打开导航栏</span>
+      <el-switch v-model="tagsView" class="drawer-switch" />
+    </div>
+    <div class="drawer-item">
+      <span>打开 Logo</span>
+      <el-switch v-model="showSidebarLogo" class="drawer-switch" />
+    </div>
   </div>
 </template>
-
+<script setup lang="ts">
+import { useSettingsStore } from "@/stores/settings"
+const settingsStore = useSettingsStore()
+const tagsView = computed({
+  get() {
+    return settingsStore.settings.tagsView
+  },
+  set(val) {
+    settingsStore.changeSetting({
+      key: "tagsView",
+      value: val
+    })
+  }
+})
+const showSidebarLogo = computed({
+  get() {
+    return settingsStore.settings.sidebarLogo
+  },
+  set(val) {
+    settingsStore.changeSetting({ key: "sidebarLogo", value: val })
+  }
+})
+</script>
 <style lang="scss" scoped>
 .drawer-container {
   padding: 24px;
