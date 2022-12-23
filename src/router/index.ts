@@ -80,6 +80,11 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
     ]
   },
   {
+    path: "/login",
+    name: "Login",
+    component: () => import("@/views/login/index.vue")
+  },
+  {
     // 外链路由
     path: "/external-link",
     component: Layout,

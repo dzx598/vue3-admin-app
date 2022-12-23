@@ -17,6 +17,16 @@ export default defineConfig({
       }
     ]
   },
+  server: {
+    proxy: {
+      "/dev-api": {
+        target: "http://localhost:3000",
+        ws: true,
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/dev-api/, "/api")
+      }
+    }
+  },
   plugins: [
     vue(),
     DefineOptions(),
